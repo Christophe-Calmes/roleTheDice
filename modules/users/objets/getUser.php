@@ -13,7 +13,7 @@ Class GetUser {
     return ActionDB::select($select, $param);
   }
   public function getRoles() {
-    $select = "SELECT `idRole`, `typeRole` FROM `roles`";
+    $select = "SELECT `idRole`, `typeRole` FROM `roles` ORDER BY `typeRole`";
     return ActionDB::select($select, []);
   }
 }
