@@ -1,0 +1,259 @@
+/*Présentation Graine*/
+/*Variables CSS*/
+:root {
+  /*Variables Button*/
+  --main-background-color: grey;
+  --main-background-MagicForm: #D9D9D9;
+  --main-background-navBar: #D9D9D9;
+  --main-border: none;
+  --main-color: white;
+  --main-padding: 15px 32px;
+  --main-text-align: center;
+  --main-text-decoration: none;
+  --main-display: inline-block;
+  --main-font-size: 16px;
+  --main-cursor: pointer;
+  /*Variables global*/
+  --main-radius: 0.5em;
+  --main-shadow: 2px 4px 5px 1px #151515;
+
+}
+/*Presentation basique*/
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+}
+header {
+    text-align: center;
+}
+main {
+  flex:1;
+  text-align: center;
+}
+footer {
+    text-align: center;
+}
+h1, h2 {
+  font-size: 2em;
+}
+h3 {
+  font-size: 1.5em;
+}
+a {
+  text-decoration: none;
+}
+/*Presentation*/
+.bold {
+
+  font-weight: bolder;
+  margin-bottom: 0.5em;
+}
+.bold::first-letter {
+  text-transform: capitalize;
+}
+
+/*Flex*/
+.flex-rows {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.flex-colonne {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.nav {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    background: var(--main-background-navBar);
+    border-radius: var(--main-radius);
+    border: 1px solid var(--main-color-interne);
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    width: auto;
+    padding: 0.25em;
+}
+/*List*/
+.listClass {
+  list-style: none;
+  text-align: initial;
+}
+.listeProfil {
+  list-style: none;
+  text-align: left;
+}
+/*Formulaire*/
+.formulaireClassique {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  margin-bottom: 0.5em;
+  border-radius: 5px;
+}
+input, label {
+  margin-bottom: 0.25em;
+}
+.buttonForm {
+  margin: 0.5em;
+}
+/*Fin formulaire*/
+/*Titre et sousTitre*/
+.hautPage {
+  text-align: center;
+}
+
+/*Navigation*/
+/*Navigation bandeau*/
+.navigationBandeau {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.navigationBandeau li {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  margin-left: 1em;
+  margin-right: 1em;
+  text-align: center;
+}
+/*Bouton lien*/
+/*Variable CSS boutton*/
+
+/*Fin Maitre boutton*/
+button {
+  background-color: var(--main-background-color);
+  border: var(--main-border);
+  color: var(--main-color);
+  padding: var(--main-padding);
+  text-align: var(--main-text-align);
+  text-decoration: var(--main-text-decoration);
+  display: var(--main-display);
+  font-size: var(--main-font-size);
+  cursor: var(--main-cursor);
+}
+a {
+  background-color: var(--main-background-color);
+  border: var(--main-border);
+  color: var(--main-color);
+  padding: var(--main-padding);
+  text-align: var(--main-text-align);
+  text-decoration: var(--main-text-decoration);
+  display: var(--main-display);
+  font-size: var(--main-font-size);
+  cursor: var(--main-cursor);
+}
+.lienTab {
+  background-color: #ffffff;
+
+  color: black;
+  padding: 0 0 0 0;
+  text-align: left;
+  text-decoration: none;
+  display: block;
+  font-size: 1em;
+  cursor: var(--main-cursor);
+}
+.lienNav {
+  background-color: var(--main-background-color);
+  border: var(--main-border);
+  color: var(--main-color);
+  padding: var(--main-padding);
+  text-align: var(--main-text-align);
+  text-decoration: var(--main-text-decoration);
+  display: var(--main-display);
+  font-size: var(--main-font-size);
+  cursor: var(--main-cursor);
+}
+.lienNav:hover {
+   border: 3px solid #302A39ff;
+   transition: border 0.7s;
+}
+/*Menu bandeau Tester sur un autre projet*/
+.dropdown {
+display: inline-block;
+}
+.dropdown-child {
+position: absolute;
+display: none;
+min-width: 250px;
+}
+
+.dropdown-child a {
+  background-color: var(--main-background-color);
+  border: var(--main-border);
+  color: var(--main-color);
+  /* padding: var(--main-padding); */
+  text-align: var(--main-text-align);
+  text-decoration: var(--main-text-decoration);
+  display: var(--main-display);
+  font-size: var(--main-font-size);
+  cursor: var(--main-cursor);
+  padding: 20px;
+  display: block;
+}
+.dropdown:hover .dropdown-child {
+display: block;
+transition: display 3s;
+}
+/*Fin présentation graines*/
+/*Grid */
+.moduleNav {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "nomNav phat visible zoneMenu Ordre Niveau deroulant valide";
+    /* Presentation */
+    text-align: initial;
+    border: 1px black solid;
+    padding: 0.25em;
+}
+
+.nomNav { grid-area: nomNav; }
+
+.phat { grid-area: phat; }
+
+.visible { grid-area: visible; }
+
+.zoneMenu { grid-area: zoneMenu; }
+
+.Ordre { grid-area: Ordre; }
+
+.Niveau { grid-area: Niveau; }
+
+.deroulant { grid-area: deroulant; }
+
+.valide { grid-area: valide; }
+
+/*JavaScript Magic CSS*/
+
+#hiddenForm {
+  padding-top: 0.5em;
+  padding-bottom: 0.2em;
+  top: 35%;
+  left: 35%;
+  background-color: var(--main-background-MagicForm);
+  -webkit-box-shadow: var(--main-shadow);
+  box-shadow: var(--main-shadow);
+  position: absolute;
+  width: 30%;
+  display: none;
+  /* border: 1px solid black; */
+  border: var(--main-border);
+  border-radius: var(--main-radius);
+  z-index: 2;
+}
+.objetLeft {
+    text-align: left;
+}
+/*JavaScript Magic CSS*/
