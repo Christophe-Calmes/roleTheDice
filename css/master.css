@@ -1,25 +1,37 @@
 /*Présentation Graine*/
 /*Variables CSS*/
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Playfair+Display&family=Roboto+Serif:wght@100&display=swap');
 :root {
   /*Variables Button*/
-  --main-background-color: grey;
+  --main-background-color: #DFA14Aff;
   --main-background-MagicForm: #D9D9D9;
-  --main-background-navBar: #D9D9D9;
-  --main-border: none;
-  --main-color: white;
+  --main-background-navBar: hsla(38, 87%, 15%, 0.69);
+  --main-border: 3px solid #CA8339ff;
+  --main-borderTransition: 3px solid #302A39ff;
+  --main-color: #070000ff;
   --main-padding: 15px 32px;
   --main-text-align: center;
   --main-text-decoration: none;
   --main-display: inline-block;
   --main-font-size: 16px;
   --main-cursor: pointer;
+  --main-margin: 0.1em;
   /*Variables global*/
-  --main-radius: 0.5em;
+  --main-radius: 5px;
   --main-shadow: 2px 4px 5px 1px #151515;
+  --main-colorTitle: #F5D798ff;
+  --main-colorTitle3: #F5D798ff;
+  --main-colorMain: #F5D798ff;
+  --main-fontTitle: 'Cinzel', serif;
+  --main-backgroundImage: url("../images/rollMap4.webp");
+  --main-TransitionTime: border 0.7s;
+
 
 }
 /*Presentation basique*/
 body {
+  background-image: var(--main-backgroundImage);
+  /*background: var(--main-background-color);*/
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -27,31 +39,72 @@ body {
 }
 header {
     text-align: center;
+
 }
 main {
   flex:1;
   text-align: center;
+  background-color: var(--main-colorMain);
 }
+/*Effet de paralaxe*/
+.parallax-effect {
+  background-image: url("../images/rollMap.webp");
+  min-height: 15vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align: center;
+}
+.calque {
+  min-height: 200%;
+  font-weight: 600;
+  font-size: 1.2em;
+  background-color: hsla(264, 15%, 19%, 0.55);
+  width: auto;
+  color: #F5D798ff;
+  padding: 0.25em;
+}
+.main {
+  height: auto;
+  background: #F5D798ff;
+  text-align: center;
+  min-height:600px;
+  padding-top: 0.5em;
+  padding-bottom: 1em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+/*Fin effet de paralaxe*/
+
 footer {
     text-align: center;
+    background-color: var(--main-background-navBar);
 }
 h1, h2 {
-  font-size: 2em;
+  font-size: 3em;
+  color: var(--main-colorTitle);
+  font-family: var(--main-fontTitle);
 }
 h3 {
   font-size: 1.5em;
+  color: var(--main-colorTitle);
+  font-family: var(--main-fontTitle);
 }
 a {
   text-decoration: none;
 }
 /*Presentation*/
 .bold {
-
   font-weight: bolder;
   margin-bottom: 0.5em;
 }
 .bold::first-letter {
   text-transform: capitalize;
+}
+.copyRigth {
+  color: var(--main-colorTitle);
+  font-family: var(--main-fontTitle);
 }
 
 /*Flex*/
@@ -68,7 +121,6 @@ a {
   align-items: flex-start;
 }
 .nav {
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     background: var(--main-background-navBar);
     border-radius: var(--main-radius);
     border: 1px solid var(--main-color-interne);
@@ -76,6 +128,27 @@ a {
     margin-right: 0.5em;
     width: auto;
     padding: 0.25em;
+}
+.navUp {
+  background: var(--main-background-navBar);
+  border-radius: 10px 10px 0px 0px;
+  border: 1px solid var(--main-color-interne);
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  width: auto;
+  padding: 0.25em;
+}
+.navDown {
+    background: var(--main-background-navBar);
+    border-radius: 0px 0px 10px 10px;
+    border: 1px solid var(--main-color-interne);
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    width: auto;
+    padding: 0.25em;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
 /*List*/
 .listClass {
@@ -129,30 +202,41 @@ input, label {
 
 /*Fin Maitre boutton*/
 button {
+  font-family: var(--main-fontTitle);
   background-color: var(--main-background-color);
   border: var(--main-border);
   color: var(--main-color);
   padding: var(--main-padding);
+  margin-top: var(--main-margin);
+  margin-bottom: var(--main-margin);
   text-align: var(--main-text-align);
   text-decoration: var(--main-text-decoration);
   display: var(--main-display);
   font-size: var(--main-font-size);
   cursor: var(--main-cursor);
+  border-radius: var(--main-radius);
+}
+button:hover {
+  border: var(--main-borderTransition);
+  transition: border 0.7s;
 }
 a {
+  font-family: var(--main-fontTitle);
   background-color: var(--main-background-color);
   border: var(--main-border);
   color: var(--main-color);
   padding: var(--main-padding);
+  margin-top: var(--main-margin);
+  margin-bottom: var(--main-margin);
   text-align: var(--main-text-align);
   text-decoration: var(--main-text-decoration);
   display: var(--main-display);
   font-size: var(--main-font-size);
   cursor: var(--main-cursor);
+  border-radius: var(--main-radius);
 }
 .lienTab {
   background-color: #ffffff;
-
   color: black;
   padding: 0 0 0 0;
   text-align: left;
@@ -162,6 +246,7 @@ a {
   cursor: var(--main-cursor);
 }
 .lienNav {
+  font-family: var(--main-fontTitle);
   background-color: var(--main-background-color);
   border: var(--main-border);
   color: var(--main-color);
@@ -171,10 +256,11 @@ a {
   display: var(--main-display);
   font-size: var(--main-font-size);
   cursor: var(--main-cursor);
+  transition: var(--main-TransitionTime);
 }
 .lienNav:hover {
-   border: 3px solid #302A39ff;
-   transition: border 0.7s;
+   border: var(--main-borderTransition);
+   transition: var(--main-TransitionTime);
 }
 /*Menu bandeau Tester sur un autre projet*/
 .dropdown {

@@ -43,7 +43,7 @@ class ControlerAffichage {
       }
   }
 }
-echo '<main>';
+echo '<main class="main">';
   echo '<section>';
     ControlerAffichage::idOrNot($_SESSION);
   // Affichage message

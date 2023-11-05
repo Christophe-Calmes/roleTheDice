@@ -4,11 +4,12 @@ private $role;
 private $yes;
   public function __construct() {
     $ROLES = $this->getRoles();
-    $arrayRoles = [];
+    //print_r($ROLES);
+    $roles = array();
     foreach ($ROLES as $key => $value) {
-      array_push($arrayRoles, $value['typeRole']);
+      array_push($roles, ['name'=>$value['typeRole'], 'role'=>$value['accreditation']]);
     }
-    $this->role = $arrayRoles;
+    $this->role = $roles;
     $this->yes = ['Non', 'Oui'];
   }
   public function setRoles () {
@@ -22,14 +23,14 @@ private $yes;
             <table>';
       echo '<tr>
             <th>Login</th>
-            <th>Role</th>
             <th>Date d\'inscription</th>
             <th>Modifier</th>
           </tr>';
+          //print_r($variable);
+          //  print_r($this->role);
           foreach ($variable as $key => $value) {
             echo '<tr>
                     <td>'.$value['login'].'</td>
-                    <td>'.$this->role[$value['role']].'</td>
                     <td>'.brassageDate($value['dateCreation']).'</td>
                     <td>
                       <form action="'.encodeRoutage(14).'" method="post">
@@ -45,13 +46,14 @@ private $yes;
                         echo'</select>
                         <label for="role">Niveau d\'accréditation</label>
                         <select id="role" name="role">';
-                          for ($i=0; $i < count($this->role) ; $i++) {
-                            if($value['role'] == $i) {
-                              echo '<option value="'.$i.'" selected>'.$this->role[$value['role']].'</option>';
+                          foreach ($this->role as $keyRole => $valueRole) {
+                            if($valueRole['role'] == $value['role']) {
+                              echo '<option value="'.$valueRole['role'].'" selected>'.$valueRole['name'].'</option>';
                             } else {
-                              echo '<option value="'.$i.'">'.$this->role[$i].'</option>';
+                              echo '<option value="'.$valueRole['role'].'">'.$valueRole['name'].'</option>';
                             }
                           }
+
                         echo'</select>
                         <input type="hidden" name="idUser" value="'.$value['idUser'].'" />
                         <button class="buttonForm" type="submit" name="idNav" value="'.$idNav.'">Modifier</button>
@@ -78,5 +80,17 @@ private $yes;
               <button class="buttonForm" type="submit" name="idNav" value="'.$idNav.'">Désinscription</button>
             </form>';
   }
-
+  public function printRoles($valide) {
+    $dataRoles = $this->getRoles($valide);
+    $displayValide  = ['Non valide', 'Valide'];
+       if($dataRoles != []) {
+         ///$displayValide = 'Non valide';
+         echo '<ul class="listClass">';
+         echo '<li><h4>'.$displayValide[$valide].'</h4></li>';
+         foreach ($dataRoles as $key => $value) {
+           echo '<li>Type = '.$value['typeRole'].' Accréditation = '.$value['accreditation'].'</li>';
+         }
+         echo '</ul>';
+       }
+    }
 }

@@ -6,7 +6,7 @@ Class PrintNavigation extends GetNavigation {
     $data = $roles->getRoles();
     $rolesUsers = array();
     foreach ($data as $key => $value) {
-      array_push($rolesUsers, $value['typeRole']);
+        array_push($rolesUsers, ['name'=>$value['typeRole'], 'role'=>$value['accreditation']]);
     }
     return $rolesUsers;
   }
@@ -21,7 +21,7 @@ Class PrintNavigation extends GetNavigation {
           $dataTraiter  = $this->AuthenticNav ($value);
           echo ' <div class="dropdown-child">';
           foreach ($dataTraiter as $cle => $valeur) {
-              echo '<div><a href="index.php?idNav='.$valeur['targetRoute'].'">'.$valeur['nomNav'].'</a></div>';
+              echo '<div><a class="lienNav" href="index.php?idNav='.$valeur['targetRoute'].'">'.$valeur['nomNav'].'</a></div>';
           }
           echo '</div>';
           echo '</div>';
@@ -55,23 +55,26 @@ Class PrintNavigation extends GetNavigation {
     echo '</ul>';
   }
   public function listeRouteForm($variable, $securiter) {
-    //print_r($securiter);
-    for ($i=0; $i < count($securiter) ; $i++) {
-      echo '<ul class="listClass">';
-      echo '<li class="bold">'.$securiter[$i].'</li>';
-      foreach ($variable as $key => $value) {
-        if($value['securiter'] == $i) {
-          echo '<li>'.$value['chemin'].' |Action => encodeRoutage('.$value['idForm'].')</li>';
-        }
+    $roles = $this->rolesUsers();
+      foreach ($roles as $keyRoles => $valueRoles) {
+        echo '<ul class="listClass">';
+          echo '<li class="bold">'.$valueRoles['name'].'</li>';
+            foreach ($variable as $key => $value) {
+              echo '<ul class="listClass">';
+              if($value['securiter'] == $valueRoles['role']) {
+                echo '<li>'.$value['chemin'].' |Action => encodeRoutage('.$value['idForm'].')</li>';
+              }
+
+        echo '</ul>';
       }
       echo '</ul>';
     }
-
   }
   public function affichageAllNav() {
     $roles = $this->rolesUsers();
     $variable  = $this->getAllNav();
     $menu = $this->getMenuDeroulant();
+    $accreditation = '';
     function wathIsMenu ($menu, $data) {
       if($data != 0) {
           foreach ($menu as $key => $value) {
@@ -94,6 +97,11 @@ Class PrintNavigation extends GetNavigation {
             <div class="valide">Valide ?</div>
         </div>';
         foreach ($variable as $key => $value) {
+          foreach ($roles as $keyRoles => $valueRoles) {
+            if($valueRoles['role'] == $value['niveau']) {
+              $accreditation = $valueRoles['name'];
+            }
+          }
           $nav = NULL;
           if($value['deroulant'] != 0) {
             $nav = 'nav';
@@ -105,7 +113,7 @@ Class PrintNavigation extends GetNavigation {
                         <div class="visible">'.yes($value['menuVisible']).'</div>
                         <div class="zoneMenu">'.wathIsMenu($menu, $value['zoneMenu']).'</div>
                         <div class="Ordre">'.$value['ordre'].'</div>
-                        <div class="Niveau">'.$roles[$value['niveau']].'</div>
+                        <div class="Niveau">'.$accreditation.'</div>
                         <div class="deroulant">'.wathIsMenu($menu, $value['zoneMenu']).'</div>
                         <div class="valide">'.yes($value['valide']).'</div>
                     </div>
@@ -114,9 +122,10 @@ Class PrintNavigation extends GetNavigation {
   }
   public function updateNav($id, $idNav) {
     $roles = $this->rolesUsers();
+    //print_r($roles);
     $yes = ['Non', 'Oui'];
     $data = $this->getNavParam($id)[0];
-    //print_r($data);
+
     echo '<h3>Modifier un lien de navigation</h3>
     <form class="formulaireClassique" action="'.encodeRoutage(20).'" method="post">
       <input type="hidden" name="id" value="'.$data['idNav'].'"/>
@@ -137,13 +146,12 @@ Class PrintNavigation extends GetNavigation {
       <input id="ordre" type="number" name="ordre" min="0" max="20" value="'.$data['ordre'].'" required>
       <label for="niveau">Niveau d\'acréditation : '.$roles[$data['niveau']].'</label>
         <select id="niveau" name="niveau">';
-
-        for ($i=0; $i < count($roles) ; $i++) {  echo '<option value="'.$i.'">'.$roles[$i].'</option>'; }
+        foreach ($roles as $key => $value) {
+          echo '<option value="'.$value['role'].'">'.$value['name'].'</option>';
+        }
     echo '</select>';
-
             $this->selectZoneMenu($this->getMenuDeroulant());
             $this->menuDeroulant($this->getMenuDeroulant());
-
         echo '<button class="buttonForm" type="submit" name="idNav" value="'.$idNav.'">Modifier</button>
     </form>';
 echo '<form class="formulaireClassique" action="'.encodeRoutage(21).'" method="post">
@@ -186,14 +194,16 @@ echo '<form class="formulaireClassique" action="'.encodeRoutage(21).'" method="p
   public function addMenuDeroulant ($idNav) {
     $roles = $this->rolesUsers();
     $modules = $this->getModules(1);
-    //print_r($roles);
     echo '<h3>Ajouter un nouveau menu déroulant</h3>
     <form class="formulaireClassique" action="'.encodeRoutage(6).'" method="post">
       <label for="titreMenu">Nouveau menu</label>
       <input id="titreMenu" type="text" name="titreMenu" required>
       <label for="niveau">Niveau d\'acréditation du nouveau menu</label>
       <select id="niveau"  name="niveau">';
-      for ($i=0; $i < count($roles) ; $i++) {  echo '<option value="'.$i.'">'.$roles[$i].'</option>'; }
+
+      foreach ($roles as $key => $value) {
+        echo '<option value="'.$value['role'].'">'.$value['name'].'</option>';
+      }
     echo '</select>
       <label for="idModule">Module du menu déroulant</label>
         <select id="idModule" name="idModule">';

@@ -20,7 +20,9 @@
   <input id="ordre" type="number" name="ordre" min="0" max="20" required>
   <label for="niveau">Niveau d'acréditation</label>
     <select id="niveau" name="niveau">
-      <?php for ($i=0; $i < count($internaute) ; $i++) {  echo '<option value="'.$i.'">'.$internaute[$i].'</option>'; } ?>
+      <?php foreach ($internaute as $key => $value) {
+        echo '<option value="'.$value['role'].'">'.$value['name'].'</option>';
+      } ?>
     </select>
       <?php
         $readNav->selectZoneMenu($dataMenuDeroulant);

@@ -12,11 +12,9 @@
   <input id="chemin" type="text" name="chemin" required>
   <label for="securiter">Niveau d'administration du formulaire</label>
   <select id="securiter"  name="securiter">
-    <?php
-    for ($i=0; $i < count($internaute) ; $i++) {
-      echo '<option value="'.$i.'">'.$internaute[$i].'</option>';
-    }
-    ?>
+    <?php foreach ($internaute as $key => $value) {
+      echo '<option value="'.$value['role'].'">'.$value['name'].'</option>';
+    } ?>
   </select>
   <?php $readNav->modulesList(); ?>
   <button class="buttonForm" type="submit" name="idNav" value="<?=$idNav?>">Ajouter</button>

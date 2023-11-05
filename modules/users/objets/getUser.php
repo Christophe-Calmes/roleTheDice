@@ -12,8 +12,9 @@ Class GetUser {
     $param = [['prep'=>':token', 'variable'=>$token]];
     return ActionDB::select($select, $param);
   }
-  public function getRoles() {
-    $select = "SELECT `idRole`, `typeRole` FROM `roles` ORDER BY `typeRole`";
+  public function getRoles($valide = 1) {
+    $sql = new SelectRequest (['typeRole', 'accreditation'], 'roles', [['champs'=>'valide', 'operator'=>'=', 'param'=>$valide]]);
+    $select = $sql->requestSelect(0);
     return ActionDB::select($select, []);
   }
 }
