@@ -4,9 +4,7 @@
 </form>
 <?php
 function doublon ($select) {
-  $void = [];
-  $controle = new RCUD($select, $void);
-  $doublon = $controle->READ();
+  $doublon = ActionDB::select($select, []);
   if(!empty($doublon)) {
     echo '<p>Doublon détecté dans le clés. Changer le trousseau.</p>';
     echo '<ul>';

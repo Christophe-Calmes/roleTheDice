@@ -33,14 +33,10 @@
 </form>
 <h3>Les menus</h3>
 <?php
-  $arrayRole = [['role' => 'No connected user', 'level' => 0],
-                ['role' => 'Connected user', 'level' => 1],
-                ['role' => 'Administrator user', 'level' => 2],];
-      $arrayRole = array_reverse($arrayRole);
-    foreach ($arrayRole as $key => $value) {
-        echo '<h3>'.$value['role'].'</h3>';
-        $dataNavBandeau = $readNav->getNav($value['level']);
+$internaute = array_reverse($internaute);
+      foreach ($internaute as $key => $value) {
+        echo '<h3>'.$value['name'].'</h3>';
+        $dataNavBandeau = $readNav->getNav($value['role']);
         $readNav->bandeauHaut($dataNavBandeau);
-    }
-
+      }
  ?>

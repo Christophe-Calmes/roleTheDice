@@ -70,7 +70,7 @@ private $yes;
       foreach ($variable as $key => $value) {
         echo '<li>Identité : '.$value['prenom'].' '.$value['nom'].'</li>';
         echo '<li>Pseudo : '.$value['login'].'</li>';
-        echo '<li>Role : '.$this->role[$value['role']].'</li>';
+        echo '<li>Role : '.$this->role[$value['role']]['name'].'</li>';
         echo '<li>Date d\'inscription : '.brassageDate($value['dateCreation']).'</li>';
       }
     echo '</ul>';

@@ -20,7 +20,7 @@
   --main-radius: 5px;
   --main-shadow: 2px 4px 5px 1px #151515;
   --main-colorTitle: #F5D798ff;
-  --main-colorTitle3: #F5D798ff;
+  --main-colorTitle3: rgb(129, 93, 16);
   --main-colorMain: #F5D798ff;
   --main-fontTitle: 'Cinzel', serif;
   --main-backgroundImage: url("../images/rollMap4.webp");
@@ -88,7 +88,7 @@ h1, h2 {
 }
 h3 {
   font-size: 1.5em;
-  color: var(--main-colorTitle);
+  color: var(--main-colorTitle3);
   font-family: var(--main-fontTitle);
 }
 a {
@@ -172,6 +172,11 @@ a {
 input, label {
   margin-bottom: 0.25em;
 }
+input, select, textarea {
+  color: #151515;
+  background-color: wheat;
+}
+
 .buttonForm {
   margin: 0.5em;
 }
